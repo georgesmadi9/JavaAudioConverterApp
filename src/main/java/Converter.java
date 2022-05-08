@@ -7,14 +7,20 @@ import java.io.File;
 
 public class Converter {
 
-    private final File sourcePath; // source directory
-    private final File targetPath; // target directory
+    private File sourcePath = new File("./src/main/resources/input"); // source directory with default values
+    private File targetPath = new File("./src/main/resources/output"); // target directory with default values
     private String[] filenames = new String[100]; // array with the names of the files to be converted
 
-    // constructor to initialize the source and target directories
+    // Constructor to initialize the source and target directories passed as arguments
     public Converter(String sPath, String tPass) {
         sourcePath = new File(sPath);
         targetPath = new File(tPass);
+        listFiles();
+    }
+
+    // Alternative constructor with default directories
+    public Converter() {
+        listFiles();
     }
 
     // Lists all the files in a directory
@@ -35,15 +41,16 @@ public class Converter {
     public void listFiles() {
         File[] files = sourcePath.listFiles();
         String[] fns = new String[100];
-        for (int i = 0; i < files.length; i++) {
-            String filename = files[i].getName();
-            filenames[i] = filename.substring(0, filename.length() - 4);
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                String filename = files[i].getName();
+                filenames[i] = filename.substring(0, filename.length() - 4);
+            }
         }
     }
 
     // Convert all the files in the source directory (sourcePath)
     public void convertAll() {
-        listFiles();
         File[] sourcefiles = sourcePath.listFiles();
         assert sourcefiles != null;
         for (int i = 0; i < sourcefiles.length; i++) {
