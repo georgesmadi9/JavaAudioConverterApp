@@ -1,9 +1,12 @@
-import ws.schild.jave.Encoder;
-import ws.schild.jave.MultimediaObject;
-import ws.schild.jave.encode.AudioAttributes;
-import ws.schild.jave.encode.EncodingAttributes;
-
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Converter {
 
@@ -12,18 +15,20 @@ public class Converter {
     private String[] filenames = new String[100]; // array with the names of the files to be converted
 
     // Constructor to initialize the source and target directories passed as arguments
-    public Converter(String sPath, String tPass) {
+    public Converter(String sPath, String tPass) throws IOException {
         sourcePath = new File(sPath);
         targetPath = new File(tPass);
         listFiles();
+        sortByDateAsc();
     }
 
     // Alternative constructor with default directories
-    public Converter() {
+    public Converter() throws IOException {
         listFiles();
+        sortByDateAsc();
     }
 
-    // Lists all the files in a directory
+    // Lists all the files in a directory (Debug Method Only)
     public void showFiles(File directory) {
         File[] files = directory.listFiles();
         assert files != null;
@@ -44,55 +49,65 @@ public class Converter {
         if (files != null) {
             for (int i = 0; i < files.length; i++) {
                 String filename = files[i].getName();
-                filenames[i] = filename.substring(0, filename.length() - 4);
+                filenames[i] = filename; //.substring(0, filename.length() - 4);
             }
+        }
+    }
+
+    // Method to sort the different files by ascending order of creation
+    // Note: Sorted names are stored in "filenames"
+    public void sortByDateAsc() throws IOException {
+        HashMap<Integer, String> dateName = new HashMap<>();
+        for (String filename : filenames) {
+            if (filename != null) {
+                Path file = Paths.get(sourcePath + "/" + filename);
+                BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
+                FileTime time = attr.creationTime();
+                Integer newDate = (int) time.toMillis();
+
+                dateName.put(newDate, filename);
+            }
+        }
+        Object[] dates = dateName.keySet().toArray();
+        Arrays.sort(dates);
+        for (int i = 0; i < dates.length; i++) {
+            String file = dateName.get((int) dates[i]);
+            filenames[i] = file.substring(0, file.length() - 4);
         }
     }
 
     // Convert all the files in the source directory (sourcePath)
     public void convertAll() {
         File[] sourcefiles = sourcePath.listFiles();
+        Logger logger = new Logger();
         assert sourcefiles != null;
         for (int i = 0; i < sourcefiles.length; i++) {
-            System.out.println("Converting " + filenames[i] + " ...");
-            convertFile(sourcefiles[i], filenames[i]);
-            System.out.println("Done \n");
+            if (filenames[i] != null) {
+                System.out.println("Converting " + filenames[i] + " ...");
+                Engine e = new Engine(targetPath, sourcefiles[i], filenames[i]);
+                try {
+                    e.run();
+                } catch (Exception ex) {
+                    convertSingle(sourcefiles[i], filenames[i]);
+                }
+                System.out.println("Done \n");
+                logger.CSVLogger(e.getThreadUID(), filenames[i] + ".wav");
+            }
         }
     }
 
-    // Conversion file by file from any type to mp3
-    public boolean convertFile(File sourceFile, String targetName) {
-        boolean succeeded;
-        File newTargetPath = new File(targetPath + "/" + targetName + ".mp3");
+    // Convert a single file in the source directory
+    public void convertSingle(File sourceFile, String targetName) {
+        System.out.println("Converting " + targetName + " ...");
+        Logger logger = new Logger();
+        Engine e = new Engine(targetPath, sourceFile, targetName);
         try {
-            // Audio attributes - any type of file can be converted using the "libmp3lame"
-            // This codec was used because it was the one that supports .wav files
-            // between all the codec encoders supported by JAVE2 listed here:
-            // https://github.com/a-schild/jave2/wiki/Supported-formats
-            AudioAttributes audio = new AudioAttributes();
-            audio.setCodec("libmp3lame");
-            audio.setBitRate(128000);
-            audio.setChannels(2);
-            audio.setSamplingRate(44100);
-
-            //Encoding attributes - conversion to mp3 as an output file type
-            EncodingAttributes attrs = new EncodingAttributes();
-            attrs.setOutputFormat("mp3");
-            attrs.setAudioAttributes(audio);
-
-            // Encode operation to start the conversion
-            Encoder encoder = new Encoder();
-            encoder.encode(new MultimediaObject(sourceFile), newTargetPath, attrs);
-
-            // Mark that the conversion succeeded
-            succeeded = true;
+            e.run();
         } catch (Exception ex) {
-            ex.printStackTrace();
-            // Mark the operation failed
-            succeeded = false;
+            convertSingle(sourceFile, targetName);
         }
-        return succeeded;
+        System.out.println("Done \n");
+        logger.CSVLogger(e.getThreadUID(), targetName + ".wav");
     }
- 
 
 }
