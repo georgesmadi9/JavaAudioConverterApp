@@ -56,6 +56,8 @@ java core <inputDirectory> <outputDirectory> &
 ```
 _**Note:** The `&` makes the app run the background._
 
+## How it Works
+
 After that the application will run forever (or until stopped manually). It will start by converting all files it finds in `inputDirectory` from wav to mp3 format. After that, it will monitor the `inputDirectory` and convert any new added or modified wav file to mp3 format automatically. All converted files will be stored in `outputDirectory`.
 
 Any error will be logged to `logs.txt` so you can check that file to see if any problems was encountered.
