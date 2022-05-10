@@ -11,7 +11,13 @@ import java.time.format.DateTimeFormatter;
  *
  * Note: CSV file entry format:
  * +------------+-----------+
- * | Thread UID | File Name |
+ * |    Feild   |    Type   |
+ * +------------+-----------+
+ * +------------+-----------+
+ * | Thread UID |   String  |
+ * +------------+-----------+
+ * +------------+-----------+
+ * | Feild Name |   String  | 
  * +------------+-----------+
  *
  * Note #2:
