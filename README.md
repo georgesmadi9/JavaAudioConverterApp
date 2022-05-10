@@ -1,6 +1,7 @@
 # JavaAudioConverterApp
 
-This project is a system that converts *wav* files to *mp3* files using [JAVE2](https://github.com/a-schild/jave2) (A Java wrapper on the ffmpeg project). This app can be used either in the background as a constant monitor to a directory or can be launched once and stopped it up to you to decide how you wish to use it.
+This project is a system that converts *wav* files to *mp3* files using [JAVE2](https://github.com/a-schild/jave2) (A Java wrapper on the ffmpeg project). This app can be used either in the background as a constant monitor to a directory or can be launched once and stopped it up to you to decide how to use it.
+
 
 ## Features
 
@@ -9,6 +10,7 @@ This project is a system that converts *wav* files to *mp3* files using [JAVE2](
 - If any conversion failed it will be restarted directly no need for any human intervention.
 - Error logs are stored in the `logs.txt` file (modifiable).
 - Every successful process is saved to the `processes.csv` file (modifiable).
+
 
 ## Technical Features
 
@@ -23,6 +25,7 @@ This project is a system that converts *wav* files to *mp3* files using [JAVE2](
 | Thread UID | String |
 | File Name | String |
 
+
 ## Resources Used
 
 These are the few libraries that were used and their purpose:
@@ -33,6 +36,7 @@ These are the few libraries that were used and their purpose:
 - **UUID** - Generates the UID for the threads UIDs.
 
 Note: This system was developped using IntelliJ IDEA 2021 and Java.
+
 
 ## Usage
 
@@ -63,6 +67,7 @@ Any successful process will be stored into `processes.csv` so that it records al
 - There are default values for both `inputDirectory` and `outputDirectory` respectively being: `./src/main/resources/input` and `./src/main/resources/output`. Those directories are within the project and can be changed to whatever you want them to from either `core.java` or the command line. I strongly advise not changing those default values.
 - You can add files to the input directory at any point after or before the launch of the app and it will detect them and convert them as long as they are wav files. Any other format will be rejected and outputs an error with the name of the file.
 - In `./src/main/resources/input` there are sample *wav* files to test out the application but you add some if you so desire.
+
 
 ## Possible Future Improvements
 
