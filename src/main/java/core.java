@@ -18,7 +18,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
  * Note #2: This file can be run directly as is, or you can modify the
  * input/output directories either within this main code or via command line
  * by using this syntax:
- *           java core <input directory> <output directory>
+ *           java core <input directory> <output directory> &
  *
  * Note #2.1: You need to compile the directory files first before
  * running them. Use this to achieve that:
