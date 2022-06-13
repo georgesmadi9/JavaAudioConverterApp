@@ -63,13 +63,13 @@ public class Converter {
     // Collect all the source files names and stores them in an array to be used later in the conversion
     public void listFiles() {
         File[] files = sourcePath.listFiles();
-        String[] fns = new String[100];
         if (files != null) {
             for (int i = 0; i < files.length; i++) {
                 String filename = files[i].getName();
-                filenames[i] = filename; //.substring(0, filename.length() - 4);
+                filenames[i] = filename; //.substring(0, filename.length() - 4)
             }
         }
+
     }
 
     // Method to sort the different files by ascending order of creation
@@ -113,7 +113,13 @@ public class Converter {
             if (filenames[i] != null) {
                 System.out.println("Converting " + filenames[i] + " ...");
 
-                Engine e = new Engine(targetPath, sourceFiles[i], filenames[i]);
+                Engine e = new Engine(sourceFiles[i], targetPath, filenames[i]);
+
+                System.err.println();
+                System.err.println("sourceFiles[i]: " + sourceFiles[i]);
+                System.err.println("filenames[i]: " + filenames[i]);
+                System.err.println();
+
                 try {
                     e.start();
                 } catch (Exception ex) {
@@ -133,7 +139,7 @@ public class Converter {
         System.out.println("Converting " + targetName + " ...");
 
         Logger logger = new Logger();
-        Engine e = new Engine(targetPath, sourceFile, targetName);
+        Engine e = new Engine(sourceFile,targetPath, targetName);
         try {
             e.start();
         } catch (Exception ex) {

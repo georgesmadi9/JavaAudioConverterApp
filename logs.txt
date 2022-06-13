@@ -1,14 +1,38 @@
-[Error Logs - 2022-05-10T01:05:55.740]
+
+[Error Logs - 2022-06-13T12:18:42.076]
+---------FILENAMES-------------
+BabyElephantWalk60.wav
+music2.wav
+music3.wav
+music4.wav
+-------------------------------
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 
-[Error Logs - 2022-05-10T01:06:56.144]
+[Error Logs - 2022-06-13T12:24:42.048]
+---------FILENAMES-------------
+BabyElephantWalk60.wav
+music2.wav
+music3.wav
+music4.wav
+-------------------------------
+
+sourceFiles[i]: .\src\main\resources\input\BabyElephantWalk60.wav
+filenames[i]: music4
+
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 
-[Error Logs - 2022-05-10T01:08:57.564]
-SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+sourceFiles[i]: .\src\main\resources\input\music2.wav
+filenames[i]: music3
+
+
+sourceFiles[i]: .\src\main\resources\input\music3.wav
+filenames[i]: music2
+
+
+sourceFiles[i]: .\src\main\resources\input\music4.wav
+filenames[i]: BabyElephantWalk60
+

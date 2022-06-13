@@ -103,17 +103,19 @@ public class core {
         logs.errorLogger();
 
         String sourcePath = "";
-        String targetPath;
+        String targetPath = "";
 
         if (args.length != 0) {
             sourcePath = args[0];
             targetPath = args[1];
             Converter cv = new Converter(sourcePath, targetPath);
             cv.convertAll();
+            //cv.showFiles(new File(sourcePath));
             watch(sourcePath, cv);
         } else {
             Converter converter = new Converter();
             converter.convertAll();
+            //converter.showFiles(new File(sourcePath));
             watch(sourcePath, converter);
         }
     }
