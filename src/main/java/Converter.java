@@ -122,13 +122,14 @@ public class Converter {
         for (int i = 0; i < sourceFiles.length; i++) {
             AudioFile af = audioFiles.get(i);
             if (af != null) {
-                String filename = af.getfName();
+                String filenameWithExtension = af.getfName();
+                String filename = filenameWithExtension.substring(0, filenameWithExtension.length()-4);
                 System.out.println("Converting " + filename + " ...");
                 Engine e = new Engine(sourceFiles[i], targetPath, filename);
                 try { e.start(); }
                 catch (Exception ex) { convertSingle(sourceFiles[i], filename); }
                 System.out.println("Done \n");
-                logger.CSVLogger(e.getThreadUID(), filename + ".wav");
+                logger.CSVLogger(e.getThreadUID(), filenameWithExtension);
             }
         }
     }
