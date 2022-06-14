@@ -110,12 +110,10 @@ public class core {
             targetPath = args[1];
             Converter cv = new Converter(sourcePath, targetPath);
             cv.convertAll();
-            //cv.showFiles(new File(sourcePath));
             watch(sourcePath, cv);
         } else {
             Converter converter = new Converter();
             converter.convertAll();
-            //converter.showFiles(new File(sourcePath));
             watch(sourcePath, converter);
         }
     }

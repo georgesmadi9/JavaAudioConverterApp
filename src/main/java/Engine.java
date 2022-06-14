@@ -34,7 +34,7 @@ public class Engine extends Thread {
     }
 
     @Override
-    // Thread business logic aka convert the wav file to mp3
+    // Thread business logic aka convert the .wav file to .mp3
     public void start() {
         // full path definition to reach the file to convert
         File newTargetPath = new File(targetPath + "/" + targetName + ".mp3");
@@ -46,7 +46,7 @@ public class Engine extends Thread {
             // https://github.com/a-schild/jave2/wiki/Supported-formats
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec("libmp3lame");
-            audio.setBitRate(32000); //32 - 8
+            audio.setBitRate(16000); //32 - 8
             audio.setChannels(2);
             audio.setSamplingRate(44100);
 
