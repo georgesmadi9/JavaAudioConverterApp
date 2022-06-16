@@ -1,17 +1,5 @@
 
-[Error Logs - 2022-06-14T16:44:45.579]
-Exception in thread "main" java.lang.NoClassDefFoundError: ws/schild/jave/encode/AudioAttributes
-	at Engine.start(Engine.java:47)
-	at Converter.convertAll(Converter.java:129)
-	at core.main(core.java:116)
-Caused by: java.lang.ClassNotFoundException: ws.schild.jave.encode.AudioAttributes
-	at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
-	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
-	... 3 more
-
-[Error Logs - 2022-06-14T16:45:43.560]
+[Error Logs - 2022-06-16T12:05:01.889]
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.

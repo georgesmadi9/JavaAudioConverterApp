@@ -49,7 +49,7 @@ public class core {
         if (directory.equals("")) directory = "./src/main/resources/input"; // default directory if non is given
         Path dir = Paths.get(directory);
         try {
-            WatchKey key = dir.register(watcher, ENTRY_CREATE, ENTRY_MODIFY);
+            WatchKey key = dir.register(watcher, ENTRY_CREATE);
         } catch (IOException x) {
             x.printStackTrace();
         }
@@ -103,7 +103,7 @@ public class core {
         logs.errorLogger();
 
         String sourcePath = "";
-        String targetPath = "";
+        String targetPath;
 
         if (args.length != 0) {
             sourcePath = args[0];

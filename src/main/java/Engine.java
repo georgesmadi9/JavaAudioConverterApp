@@ -13,15 +13,16 @@ import java.util.UUID;
  * make the rest of the app work as expected
  * **********************************************/
 
-public class Engine extends Thread {
+public class Engine implements Runnable {
 
     public String threadUID; // Thread UID
+
     private final File sourcePath; // Source path from where to get the files to convert
     private final File targetPath; // Target path where the converted files will be stored
     private final String targetName; // Converted file name
 
     // Constructor for the class with the parameters required for it to work
-    public Engine(File sourceDir, File targetDir, String target) {
+    public Engine( File sourceDir, File targetDir, String target) {
         threadUID = UUID.randomUUID().toString().substring(0,8); // Thread UID generator with UUID and modifying it to be only 8 characters
         sourcePath = sourceDir;
         targetPath = targetDir;
@@ -35,7 +36,7 @@ public class Engine extends Thread {
 
     @Override
     // Thread business logic aka convert the .wav file to .mp3
-    public void start() {
+    public void run() {
         // full path definition to reach the file to convert
         File newTargetPath = new File(targetPath + "/" + targetName + ".mp3");
 

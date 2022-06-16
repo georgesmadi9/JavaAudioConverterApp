@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /****************************************************************************************************
  * The Converter class is the one that will search through the source directory
@@ -23,9 +26,12 @@ import java.util.ArrayList;
 
 public class Converter {
 
+    private final int threadPool = 10;
+
     private final File sourcePath; // source directory
     private final File targetPath; // target directory
     private final ArrayList<AudioFile> audioFiles = new ArrayList<>();
+    private final ExecutorService executor = Executors.newFixedThreadPool(threadPool);
 
     // Constructor to initialize the source and target directories passed as arguments
     // and do the initial setup for the rest of the process
@@ -76,22 +82,6 @@ public class Converter {
 
     // Method to sort the different files by ascending order of creation
     public void sortByDateAsc() {
-        /*HashMap<Integer, String> dateName = new HashMap<>();
-        for (String filename : filenames) {
-            if (filename != null) {
-                Path file = Paths.get(sourcePath + "/" + filename);
-                BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
-                FileTime creationTime = attr.creationTime();
-                Integer creationDateMs = (int) creationTime.toMillis();
-                dateName.put(creationDateMs, filename);
-            }
-        }
-        Object[] dates = dateName.keySet().toArray();
-        Arrays.sort(dates); // the basic sort was used here to avoid remaking sorting algorithm and make the process more complex
-        for (int i = 0; i < dates.length; i++) {
-            String file = dateName.get((int) dates[i]);
-            filenames[i] = file.substring(0, file.length() - 4);
-        }*/
         for (int i = 0; i < audioFiles.size()-1; i++) {
             AudioFile current = audioFiles.get(i);
             AudioFile next = audioFiles.get(i+1);
@@ -113,25 +103,26 @@ public class Converter {
 
     // Convert all the files in the source directory (sourcePath)
     public void convertAll() {
-        File[] sourceFiles = sourcePath.listFiles(); // array of file path (files that will be converted)
         Logger logger = new Logger(); // Logger to save the successful processes into the csv files
-        assert sourceFiles != null : "No files found in source directory!"; // make sure that sourceFiles is not empty and give an error message if is empty
 
         // Loop through all the files and convert them by using the "Engine"
         // Saves each successful process into the csv file using the logger
-        for (int i = 0; i < sourceFiles.length; i++) {
-            AudioFile af = audioFiles.get(i);
+        for (AudioFile af : audioFiles) {
             if (af != null) {
                 String filenameWithExtension = af.getfName();
-                String filename = filenameWithExtension.substring(0, filenameWithExtension.length()-4);
+                String filename = filenameWithExtension.substring(0, filenameWithExtension.length() - 4);
                 System.out.println("Converting " + filename + " ...");
-                Engine e = new Engine(sourceFiles[i], targetPath, filename);
-                try { e.start(); }
-                catch (Exception ex) { convertSingle(sourceFiles[i], filename); }
+                Engine e = new Engine(new File(sourcePath + "/" + af.getfName()), targetPath, filename);
+                try {
+                    executor.execute(e);
+                } catch (Exception ex) {
+                    convertSingle(new File(sourcePath + "/" + af.getfName()), filename);
+                }
                 System.out.println("Done \n");
                 logger.CSVLogger(e.getThreadUID(), filenameWithExtension);
             }
         }
+        executor.shutdown();
     }
 
     // Convert a single file in the source directory
@@ -140,7 +131,7 @@ public class Converter {
         System.out.println("Converting " + targetName + " ...");
         Logger logger = new Logger();
         Engine e = new Engine(sourceFile,targetPath, targetName);
-        try { e.start(); }
+        try { executor.execute(e); }
         catch (Exception ex) { convertSingle(sourceFile, targetName); }
         System.out.println("Done \n");
         logger.CSVLogger(e.getThreadUID(), targetName + ".wav");
