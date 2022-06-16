@@ -1,3 +1,7 @@
+package com.example;
+
+import com.example.AudioFile;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,12 +10,11 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /****************************************************************************************************
- * The Converter class is the one that will search through the source directory
+ * The com.example.Converter class is the one that will search through the source directory
  * to retrieve the files that need to be converted and then has the option to convert file
  * after file or all the files in the directory all at once.
  *
@@ -103,9 +106,9 @@ public class Converter {
 
     // Convert all the files in the source directory (sourcePath)
     public void convertAll() {
-        Logger logger = new Logger(); // Logger to save the successful processes into the csv files
+        Logger logger = new Logger(); // com.example.Logger to save the successful processes into the csv files
 
-        // Loop through all the files and convert them by using the "Engine"
+        // Loop through all the files and convert them by using the "com.example.Engine"
         // Saves each successful process into the csv file using the logger
         for (AudioFile af : audioFiles) {
             if (af != null) {

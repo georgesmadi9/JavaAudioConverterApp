@@ -1,3 +1,5 @@
+package com.example;
+
 public class AudioFile {
 
     private final String fName; // filename
@@ -22,7 +24,7 @@ public class AudioFile {
     // String version of the audio file
     @Override
     public String toString() {
-        return "AudioFile{" +
+        return "com.example.AudioFile{" +
                 "fName='" + fName + '\'' +
                 ", cDate=" + cDate +
                 '}';

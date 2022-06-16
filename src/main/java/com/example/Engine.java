@@ -1,3 +1,5 @@
+package com.example;
+
 import ws.schild.jave.Encoder;
 import ws.schild.jave.MultimediaObject;
 import ws.schild.jave.encode.AudioAttributes;
@@ -7,7 +9,7 @@ import java.io.File;
 import java.util.UUID;
 
 /************************************************
- * Engine is the conversion part of the app
+ * com.example.Engine is the conversion part of the app
  * This class implements the Tread logic along
  * with a few extra information on the thread to
  * make the rest of the app work as expected

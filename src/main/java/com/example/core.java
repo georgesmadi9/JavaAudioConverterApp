@@ -1,3 +1,5 @@
+package com.example;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -29,7 +31,6 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
  ************************************************************************/
 
 public class core {
-
 
     public static WatchService watcher; // watcher creation
     static Logger logs = new Logger(); // logger creation (will be used to change errors output)
