@@ -22,4 +22,4 @@ RUN ["mvn", "package"]
 
 EXPOSE 8005
 
-ENTRYPOINT ["java", "-jar", "./target/converter.jar"]
+CMD ["java", "-jar", "./target/converter.jar"]
