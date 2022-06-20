@@ -24,11 +24,10 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.3.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.0.0</version>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.2.0</version>
         </dependency>
     </dependencies>
 
@@ -62,107 +61,7 @@
                     </archive>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>core</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
-
-    <!-- <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-archiver</artifactId>
-                <version>3.0.2</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-archiver</artifactId>
-                <version>4.2.0</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.apache.maven.shared</groupId>
-                <artifactId>maven-shared-utils</artifactId>
-                <version>3.3.4</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-provider-api</artifactId>
-                <version>1.0-beta-6</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>2.11.0</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.5</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.15</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.apache.maven.shared</groupId>
-                <artifactId>maven-common-artifact-filters</artifactId>
-                <version>3.0.1</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-interpolation</artifactId>
-                <version>1.14</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-component-annotations</artifactId>
-                <version>1.5.4</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.codehaus.plexus</groupId>
-                <artifactId>plexus-utils</artifactId>
-                <version>3.1.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>3.11</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement> -->
 </project>
