@@ -22,4 +22,6 @@ RUN ["mvn", "package"]
 
 EXPOSE 8005
 
-CMD ["java", "-jar", "./target/converter.jar"]
+# 4. add any non-default input/output directories as arguments after the .jar in this format: [... .jar" , "input directory", "output-directory"]
+
+ENTRYPOINT ["java", "-jar", "./target/converter-jar-with-dependencies.jar"]
