@@ -1,0 +1,198 @@
+
+[Error Logs - 06/22/2022 16:29:29]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+ws.schild.jave.EncoderException: Input file not found <C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\iDIR\BabyElephantWalk60.wav>
+	at ws.schild.jave.MultimediaObject.getInfo(MultimediaObject.java:171)
+	at ws.schild.jave.Encoder.encode(Encoder.java:600)
+	at ws.schild.jave.Encoder.encode(Encoder.java:481)
+	at ws.schild.jave.Encoder.encode(Encoder.java:351)
+	at ws.schild.jave.Encoder.encode(Encoder.java:318)
+	at Engine.run(Engine.java:60)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+ws.schild.jave.EncoderException: Input file not found <C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\iDIR\ImperialMarch60.wav>
+	at ws.schild.jave.MultimediaObject.getInfo(MultimediaObject.java:171)
+	at ws.schild.jave.Encoder.encode(Encoder.java:600)
+	at ws.schild.jave.Encoder.encode(Encoder.java:481)
+	at ws.schild.jave.Encoder.encode(Encoder.java:351)
+	at ws.schild.jave.Encoder.encode(Encoder.java:318)
+	at Engine.run(Engine.java:60)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+ws.schild.jave.EncoderException: Input file not found <C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\iDIR\Fanfare60.wav>
+	at ws.schild.jave.MultimediaObject.getInfo(MultimediaObject.java:171)
+	at ws.schild.jave.Encoder.encode(Encoder.java:600)
+	at ws.schild.jave.Encoder.encode(Encoder.java:481)
+	at ws.schild.jave.Encoder.encode(Encoder.java:351)
+	at ws.schild.jave.Encoder.encode(Encoder.java:318)
+	at Engine.run(Engine.java:60)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\Fanfare60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:182)
+	at core.watch(core.java:77)
+	at core.main(core.java:126)
+
+[Error Logs - 06/22/2022 16:32:05]
+
+java.lang.IllegalMonitorStateException: current thread is not owner
+	at java.base/java.lang.Object.wait(Native Method)
+	at Converter.convertAll(Converter.java:144)
+	at core.main(core.java:125)
+
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+[Error Logs - 06/22/2022 16:33:34]
+
+java.lang.IllegalMonitorStateException: current thread is not owner
+	at java.base/java.lang.Object.wait(Native Method)
+	at Converter.convertAll(Converter.java:144)
+	at core.main(core.java:125)
+
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+[Error Logs - 06/22/2022 16:34:39]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+ws.schild.jave.EncoderException: Input file not found <C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\iDIR\ImperialMarch60.wav>
+	at ws.schild.jave.MultimediaObject.getInfo(MultimediaObject.java:171)
+	at ws.schild.jave.Encoder.encode(Encoder.java:600)
+	at ws.schild.jave.Encoder.encode(Encoder.java:481)
+	at ws.schild.jave.Encoder.encode(Encoder.java:351)
+	at ws.schild.jave.Encoder.encode(Encoder.java:318)
+	at Engine.run(Engine.java:60)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+ws.schild.jave.EncoderException: Input file not found <C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\iDIR\CantinaBand60.wav>
+	at ws.schild.jave.MultimediaObject.getInfo(MultimediaObject.java:171)
+	at ws.schild.jave.Encoder.encode(Encoder.java:600)
+	at ws.schild.jave.Encoder.encode(Encoder.java:481)
+	at ws.schild.jave.Encoder.encode(Encoder.java:351)
+	at ws.schild.jave.Encoder.encode(Encoder.java:318)
+	at Engine.run(Engine.java:60)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+[Error Logs - 06/22/2022 16:35:51]
+java.nio.file.FileAlreadyExistsException: iDIR
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:357)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:126)
+java.nio.file.FileAlreadyExistsException: iDIR
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:357)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:126)
+
+[Error Logs - 06/22/2022 16:37:01]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\Fanfare60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:121)
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\Fanfare60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:121)
+
+[Error Logs - 06/22/2022 16:38:14]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\Fanfare60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:120)
+
+[Error Logs - 06/22/2022 16:38:42]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\CantinaBand60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:120)
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\CantinaBand60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:120)
+java.nio.file.NoSuchFileException: C:\Users\gmadi\Desktop\converter\JavaAudioConverterApp\__tmp_54387291\CantinaBand60.mp3
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:332)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:293)
+	at java.base/java.nio.file.Files.move(Files.java:1426)
+	at Converter.move(Converter.java:187)
+	at core.watch(core.java:77)
+	at core.main(core.java:120)
+
+[Error Logs - 06/22/2022 16:39:28]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.

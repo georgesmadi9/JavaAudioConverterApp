@@ -8,8 +8,7 @@ import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static java.lang.Thread.sleep;
+import java.util.concurrent.TimeUnit;
 
 /****************************************************************************************************
  * The Converter class is the one that will search through the source directory
@@ -31,37 +30,43 @@ public class Converter {
     private final File targetPath; // target directory
     private final ArrayList<AudioFile> audioFiles = new ArrayList<>(); // array of AudioFiles
 
+    private final File tmpDir = new File("__tmp_54387291");
+
     // Constructor to initialize the source and target directories passed as arguments
     // and do the initial setup for the rest of the process
     // Note: See comments on top of each function to see what they do
     public Converter(String sPath, String tPass) throws IOException {
         sourcePath = new File(sPath);
         targetPath = new File(tPass);
-        boolean iDirCreated = createDirectory(sourcePath);
-        boolean oDirCreated = createDirectory(targetPath);
+        if (!checkDirectory(sourcePath)) createDirectory(sourcePath);
+        if (!checkDirectory(targetPath)) createDirectory(targetPath);
+        if (!checkDirectory(tmpDir)) createDirectory(tmpDir);
         listFiles();
         sortByDateAsc();
     }
 
     // Alternative constructor with default directories
     public Converter() throws IOException {
-        sourcePath = new File("./src/main/resources/input");
-        targetPath = new File("./src/main/resources/output");
+        sourcePath = new File("src/main/resources/input");
+        targetPath = new File("src/main/resources/output");
+        if (!checkDirectory(sourcePath)) createDirectory(sourcePath);
+        if (!checkDirectory(targetPath)) createDirectory(targetPath);
+        if (!checkDirectory(tmpDir)) createDirectory(tmpDir);
         listFiles();
         sortByDateAsc();
     }
 
+    // Checks if the directory exists
+    public boolean checkDirectory(File dirPath) {
+        return dirPath.exists();
+    }
+
+    // If non-default directories are specified but do not 
+    // this function will create the directories within the specified path 
     boolean createDirectory(File dirPath) {
-        boolean dirExists = dirPath.exists();
-
         String dirName = dirPath.toString().substring(dirPath.toString().lastIndexOf("\\") + 1);
-
-        if (!dirExists) {
-            System.out.println(dirName + " does not exist. \nCreating " + dirName + " ...");
-            return dirPath.mkdir();
-        } else {
-            return false;
-        }
+        System.out.println(dirName + " does not exist. \nCreating " + dirName + " ...");
+        return dirPath.mkdir();
     }
 
     // Lists all the files in a directory (Debug Method Only)
@@ -83,12 +88,14 @@ public class Converter {
         File[] files = sourcePath.listFiles();
         if (files != null) {
             for (File value : files) {
-                String filename = value.getName();
-                Path file = Paths.get(sourcePath + "/" + filename);
-                BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
-                FileTime creationTime = attr.creationTime();
-                Integer creationDateMs = (int) creationTime.toMillis();
-                audioFiles.add(new AudioFile(filename, creationDateMs));
+                if (!value.isDirectory() && Files.probeContentType(value.toPath()).equals("audio/wav")) {
+                    String filename = value.getName();
+                    Path file = Paths.get(sourcePath + "/" + filename);
+                    BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
+                    FileTime creationTime = attr.creationTime();
+                    Integer creationDateMs = (int) creationTime.toMillis();
+                    audioFiles.add(new AudioFile(filename, creationDateMs));
+                }
             }
         }
     }
@@ -117,46 +124,71 @@ public class Converter {
     // Convert all the files in the source directory (sourcePath)
     public void
     convertAll() throws InterruptedException {
-        Logger logger = new Logger(); // Logger to save the successful processes into the csv files
+        //Logger logger = new Logger(); // Logger to save the successful processes into the csv files
 
         // Loop through all the files and convert them by using the "Engine"
-        // Saves each successful process into the csv file using the logger
+        // Saves each successful process into the csv file using the logger (desctivated at the moment)
         for (AudioFile af : audioFiles) {
             if (af != null) {
                 String filenameWithExtension = af.getfName();
                 String filename = filenameWithExtension.substring(0, filenameWithExtension.length() - 4);
+                File filePath = new File(sourcePath + "/" + af.getfName());
                 System.out.println("Converting " + filename + " ...");
-                Engine e = new Engine(new File(sourcePath + "/" + af.getfName()), targetPath, filename);
+                Engine e = new Engine(filePath, targetPath, filename);
                 try {
-                    //executor.execute(e);
                     threadPool.submit(e);
                 } catch (Exception ex) {
-                    convertSingle(new File(sourcePath + "/" + af.getfName()), filename, 0);
+                    convertSingle(filePath, filename);
                 }
                 System.out.println("Done \n");
-                logger.CSVLogger(e.getThreadUID(), filenameWithExtension);
+
+                TimeUnit.SECONDS.sleep(1);
+
+                File df = new File(sourcePath.toString() + "\\" + filenameWithExtension);
+                df.delete();
+                
+                //logger.CSVLogger(e.getThreadUID(), filenameWithExtension);
             }
         }
-        //executor.shutdown();
     }
 
     // Convert a single file in the source directory
     // Saves the process in the CSV file it the conversion succeeded
-    public void convertSingle(File sourceFile, String targetName, int flag) throws InterruptedException {
-        if (flag == 1) {
-            sleep(50);
-        }
+    public void convertSingle(File sourceFile, String targetName) throws InterruptedException {
         System.out.println("Converting " + targetName + " ...");
-        Logger logger = new Logger();
+
+        //Logger logger = new Logger();
+
         Engine e = new Engine(sourceFile, targetPath, targetName);
         try {
-            //executor.execute(e);
             threadPool.submit(e);
         } catch (Exception ex) {
-            convertSingle(sourceFile, targetName, 0);
+            convertSingle(sourceFile, targetName);
         }
         System.out.println("Done \n");
-        logger.CSVLogger(e.getThreadUID(), targetName + ".wav");
+
+        TimeUnit.SECONDS.sleep(1);
+
+        File df = new File(sourcePath.toString() + "\\" + targetName + ".wav");
+        df.delete();
+
+        //logger.CSVLogger(e.getThreadUID(), targetName + ".wav");
+    }
+
+    public Path move() throws IOException {
+        String filenameWithExtension = "";
+        File _tmpPath = new File("");
+
+        for (AudioFile audioFile : audioFiles) {
+            filenameWithExtension = audioFile.getfName();
+            String filename = filenameWithExtension.substring(0, filenameWithExtension.length() - 4);
+            _tmpPath = new File(tmpDir.getAbsolutePath() + "\\" + filename + ".mp3");
+        }
+        return Files.move(_tmpPath.toPath(), targetPath.toPath());
+    }
+
+    public boolean cleanup() {
+        return tmpDir.delete();
     }
 
 }

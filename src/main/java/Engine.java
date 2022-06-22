@@ -37,7 +37,7 @@ public class Engine extends Thread {
     // Thread business logic aka convert the .wav file to .mp3
     public void run() {
         // full path definition to reach the file to convert
-        File newTargetPath = new File(targetPath + "/" + targetName + ".mp3");
+        File newTargetPath = new File(targetPath + "\\" + targetName + ".mp3");
 
         try {
             // Audio attributes - any type of file can be converted using the "libmp3lame"
