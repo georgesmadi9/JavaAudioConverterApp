@@ -34,7 +34,7 @@ public class Logger {
     public void errorLogger() {
         try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
+            String now = LocalDateTime.now().format(dtf);
             /* /!\ File name here (logs.txt) */
             PrintStream errorLogs = new PrintStream(new FileOutputStream("logs.txt", true), true);
             System.setErr(errorLogs);
